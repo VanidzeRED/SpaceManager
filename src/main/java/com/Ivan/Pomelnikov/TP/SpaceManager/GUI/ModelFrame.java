@@ -1,17 +1,20 @@
 package com.Ivan.Pomelnikov.TP.SpaceManager.GUI;
 
+import com.Ivan.Pomelnikov.TP.SpaceManager.dto.ModelDto;
+import com.Ivan.Pomelnikov.TP.SpaceManager.service.ModelService;
 import org.springframework.context.ApplicationContext;
 
 import javax.swing.*;
 
 public class ModelFrame extends JFrame {
 
-
+    private ModelService modelService;
 
     public ModelFrame(ApplicationContext context) {
         super("Model Manager");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(430, 250);
+        this.modelService = context.getBean(ModelService.class);
 
         JPanel panel = new JPanel();
         panel.setLayout(null);
@@ -31,7 +34,12 @@ public class ModelFrame extends JFrame {
         JButton addButton = new JButton("add new");
         addButton.setBounds(10, 170, Index.buttonWidth, Index.buttonHeight);
         addButton.addActionListener(e -> {
-
+            ModelDto modelDto = new ModelDto();
+            modelDto.setName(nameTextField.getText());
+            modelDto.setPayload(Double.parseDouble(payloadTextField.getText()));
+            modelDto.setMaxRouteLength(Double.parseDouble(maxRouteLengthTextField.getText()));
+            modelDto.setSpeed(Double.parseDouble(speedTextField.getText()));
+            modelService.addModel(modelDto);
         });
 
         JTextField modelToRemoveTextField = new JTextField("madel name");
@@ -39,6 +47,14 @@ public class ModelFrame extends JFrame {
 
         JButton deleteButton = new JButton("delete model");
         deleteButton.setBounds(210, 50, Index.buttonWidth, Index.buttonHeight);
+        deleteButton.addActionListener(e -> {
+            ModelDto modelDto = new ModelDto();
+            modelDto.setName(nameTextField.getText());
+            modelDto.setPayload(Double.parseDouble(payloadTextField.getText()));
+            modelDto.setMaxRouteLength(Double.parseDouble(maxRouteLengthTextField.getText()));
+            modelDto.setSpeed(Double.parseDouble(speedTextField.getText()));
+            modelService.deleteByName(modelDto);
+        });
 
         JButton exitButton = new JButton("Exit");
         exitButton.setBounds(210, 170, Index.buttonWidth, Index.buttonHeight);
