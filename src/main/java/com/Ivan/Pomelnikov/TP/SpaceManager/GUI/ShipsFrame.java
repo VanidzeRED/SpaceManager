@@ -27,7 +27,7 @@ public class ShipsFrame extends JFrame {
         JPanel panel = new JPanel();
         panel.setLayout(null);
 
-        JLabel label = new JLabel("asfsdgagswdgawg", SwingConstants.CENTER);
+        JLabel label = new JLabel("", SwingConstants.CENTER);
         label.setFont(new Font(null, Font.BOLD, 16));
         label.setBounds(10, 130, 610, 30);
 
