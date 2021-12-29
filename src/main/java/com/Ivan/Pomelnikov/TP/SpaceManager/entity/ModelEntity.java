@@ -13,6 +13,7 @@ import javax.persistence.*;
 public class ModelEntity {
 
     @Column()
+    @Id
     private String name;
 
     @Column()

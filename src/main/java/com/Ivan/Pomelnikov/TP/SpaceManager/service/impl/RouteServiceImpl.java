@@ -5,13 +5,16 @@ import com.Ivan.Pomelnikov.TP.SpaceManager.entity.RoutesEntity;
 import com.Ivan.Pomelnikov.TP.SpaceManager.repository.RoutesRepository;
 import com.Ivan.Pomelnikov.TP.SpaceManager.service.RoutesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class RouteServiceImpl implements RoutesService {
 
     @Autowired
     private RoutesRepository routesRepository;
+
     @Override
     public List<RoutesEntity> findAll() {
         return routesRepository.findAll();

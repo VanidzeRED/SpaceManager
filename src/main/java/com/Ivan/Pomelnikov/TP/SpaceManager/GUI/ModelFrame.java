@@ -26,6 +26,7 @@ public class ModelFrame extends JFrame {
 
         JButton addButton = new JButton("add new");
         addButton.setBounds(10, 170, Index.buttonWidth, Index.buttonHeight);
+        addButton.addActionListener(e -> );
 
         JTextField modelToRemoveTextField = new JTextField("madel name");
         modelToRemoveTextField.setBounds(210, 10, Index.buttonWidth, Index.buttonHeight);

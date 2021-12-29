@@ -20,6 +20,7 @@ import java.util.Set;
 public class RoutesEntity {
 
     @Column()
+    @Id
     private Long id;
 
     @Column()
@@ -31,7 +32,7 @@ public class RoutesEntity {
     @Column()
     private double routeLength;
 
-    @OneToMany(mappedBy = "ships", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "route", fetch = FetchType.EAGER)
     @Fetch(FetchMode.SUBSELECT)
     private Set<ShipsEntity> shipsOnRoute;
 

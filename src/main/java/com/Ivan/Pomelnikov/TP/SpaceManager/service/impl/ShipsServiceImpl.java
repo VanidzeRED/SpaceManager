@@ -11,10 +11,12 @@ import com.Ivan.Pomelnikov.TP.SpaceManager.repository.RoutesRepository;
 import com.Ivan.Pomelnikov.TP.SpaceManager.repository.ShipsRepository;
 import com.Ivan.Pomelnikov.TP.SpaceManager.service.ShipsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Set;
 
+@Service
 public class ShipsServiceImpl implements ShipsService {
 
     @Autowired

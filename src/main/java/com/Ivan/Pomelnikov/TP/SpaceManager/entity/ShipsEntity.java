@@ -13,13 +13,14 @@ import javax.persistence.*;
 public class ShipsEntity {
 
     @Column()
+    @Id
     private Long id;
 
     @Column()
     private String model;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "route_id")
     private RoutesEntity route;
 
     @Column()
