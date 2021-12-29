@@ -7,7 +7,7 @@ public class ModelFrame extends JFrame {
     public ModelFrame() {
         super("Model Manager");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setSize(630, 250);
+        this.setSize(430, 250);
 
         JPanel panel = new JPanel();
         panel.setLayout(null);
@@ -27,26 +27,14 @@ public class ModelFrame extends JFrame {
         JButton addButton = new JButton("add new");
         addButton.setBounds(10, 170, Index.buttonWidth, Index.buttonHeight);
 
-        JTextField shipIdTextField = new JTextField("ship Id");
-        shipIdTextField.setBounds(210, 10, Index.buttonWidth, Index.buttonHeight);
+        JTextField modelToRemoveTextField = new JTextField("madel name");
+        modelToRemoveTextField.setBounds(210, 10, Index.buttonWidth, Index.buttonHeight);
 
-        JTextField routeIdTextField = new JTextField("route Id");
-        routeIdTextField.setBounds(210, 50, Index.buttonWidth, Index.buttonHeight);
-
-        JButton setButton = new JButton("set ship on route");
-        setButton.setBounds(210, 90, Index.buttonWidth, Index.buttonHeight);
-
-        JTextField shipToRemoveTextField = new JTextField("ship Id");
-        shipToRemoveTextField.setBounds(410, 10, Index.buttonWidth, Index.buttonHeight);
-
-        JButton putFromRouteButton = new JButton("put out from route");
-        putFromRouteButton.setBounds(410, 50, Index.buttonWidth, Index.buttonHeight);
-
-        JButton deleteButton = new JButton("delete ship");
-        deleteButton.setBounds(410, 90, Index.buttonWidth, Index.buttonHeight);
+        JButton deleteButton = new JButton("delete model");
+        deleteButton.setBounds(210, 50, Index.buttonWidth, Index.buttonHeight);
 
         JButton exitButton = new JButton("Exit");
-        exitButton.setBounds(410, 170, Index.buttonWidth, Index.buttonHeight);
+        exitButton.setBounds(210, 170, Index.buttonWidth, Index.buttonHeight);
         exitButton.addActionListener(e -> this.setVisible(false));
 
         panel.add(nameTextField);
@@ -54,11 +42,7 @@ public class ModelFrame extends JFrame {
         panel.add(maxRouteLengthTextField);
         panel.add(speedTextField);
         panel.add(addButton);
-        panel.add(shipIdTextField);
-        panel.add(routeIdTextField);
-        panel.add(setButton);
-        panel.add(shipToRemoveTextField);
-        panel.add(putFromRouteButton);
+        panel.add(modelToRemoveTextField);
         panel.add(deleteButton);
         panel.add(exitButton);
         this.getContentPane().add(panel);
