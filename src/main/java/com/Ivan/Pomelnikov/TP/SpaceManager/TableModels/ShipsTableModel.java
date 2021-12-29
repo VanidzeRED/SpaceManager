@@ -18,4 +18,16 @@ public class ShipsTableModel extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         return null;
     }
+
+    @Override
+    public String getColumnName(int columnIndex) {
+        return switch (columnIndex) {
+            case 0 -> "id";
+            case 1 -> "model";
+            case 2 -> "route";
+            case 3 -> "time";
+            case 5 -> "circulation";
+            default -> "not stated";
+        };
+    }
 }

@@ -17,4 +17,15 @@ public class ModelTableModel extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         return null;
     }
+
+    @Override
+    public String getColumnName(int columnIndex) {
+        return switch (columnIndex) {
+            case 0 -> "name";
+            case 1 -> "payload";
+            case 2 -> "max route";
+            case 3 -> "speed";
+            default -> "not stated";
+        };
+    }
 }
