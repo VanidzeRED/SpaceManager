@@ -12,13 +12,11 @@ import javax.persistence.*;
 @Table(name = "ships")
 public class ShipsEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column()
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "name")
-    private ModelEntity model;
+    @Column()
+    private String model;
 
     @ManyToOne
     @JoinColumn(name = "id")

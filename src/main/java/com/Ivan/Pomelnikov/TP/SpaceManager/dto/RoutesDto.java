@@ -3,7 +3,9 @@ package com.Ivan.Pomelnikov.TP.SpaceManager.dto;
 import lombok.Data;
 
 @Data
-public class RoutesEntity {
+public class RoutesDto {
+
+    private Long id;
 
     private String aPoint;
 

@@ -19,8 +19,7 @@ import java.util.Set;
 
 public class RoutesEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column()
     private Long id;
 
     @Column()
