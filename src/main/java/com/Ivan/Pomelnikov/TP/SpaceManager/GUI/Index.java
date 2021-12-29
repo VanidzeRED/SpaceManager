@@ -1,12 +1,11 @@
 package com.Ivan.Pomelnikov.TP.SpaceManager.GUI;
 
-import com.Ivan.Pomelnikov.TP.SpaceManager.TableModels.ModelTableModel;
-import com.Ivan.Pomelnikov.TP.SpaceManager.TableModels.RoutesTableModel;
-import com.Ivan.Pomelnikov.TP.SpaceManager.TableModels.ShipsTableModel;
+import com.Ivan.Pomelnikov.TP.SpaceManager.entity.ModelEntity;
+import com.Ivan.Pomelnikov.TP.SpaceManager.entity.RoutesEntity;
 import com.Ivan.Pomelnikov.TP.SpaceManager.entity.ShipsEntity;
+import com.Ivan.Pomelnikov.TP.SpaceManager.service.ModelService;
+import com.Ivan.Pomelnikov.TP.SpaceManager.service.RoutesService;
 import com.Ivan.Pomelnikov.TP.SpaceManager.service.ShipsService;
-import com.Ivan.Pomelnikov.TP.SpaceManager.service.impl.ShipsServiceImpl;
-import lombok.Setter;
 import org.springframework.context.ApplicationContext;
 
 import javax.swing.*;
@@ -18,6 +17,10 @@ public class Index extends JFrame {
     static int buttonHeight = 30;
     static int tableWidth = 600;
     static int tableHeight = 140;
+
+    private static Object[] shipsHeader = new String[] {"id", "model", "route", "time", "circulation"};
+    private static Object[] routesHeader = new String[] {"id", "point A", "point B", "length", "ships", "circulation"};
+    private static Object[] modelHeader = new String[] {"name", "payload", "max route length", "speed"};
 
     public Index(ApplicationContext context) {
         super("Space Manager");
@@ -38,11 +41,18 @@ public class Index extends JFrame {
         JButton shipsViewButton = new JButton("View ships");
         shipsViewButton.setBounds(10, 160, buttonWidth, buttonHeight);
         shipsViewButton.addActionListener(e -> {
-            JTable table = new JTable(new ShipsTableModel(context.getBean(ShipsService.class)));
-            table.setVisible(true);
             ShipsService shipsService = context.getBean(ShipsService.class);
             List<ShipsEntity> shipsEntityList = shipsService.findAll();
-            System.out.println(shipsEntityList.get(0).getModel());
+            Object[][] array = new Object[shipsEntityList.size()][5];
+            for (int i = 0; i < shipsEntityList.size(); i++) {
+                array[i][0] =  shipsEntityList.get(i).getId();
+                array[i][1] =  shipsEntityList.get(i).getModel();
+                array[i][2] =  shipsEntityList.get(i).getRoute();
+                array[i][3] =  shipsEntityList.get(i).getTimeOnRoute();
+                array[i][4] =  shipsEntityList.get(i).getCirculation();
+            }
+            JTable table = new JTable(array, shipsHeader);
+            table.setVisible(true);
             JScrollPane tableScrollPane = new JScrollPane(table);
             tableScrollPane.setBounds(10, 10, tableWidth, tableHeight);
             panel.add(tableScrollPane);
@@ -52,7 +62,18 @@ public class Index extends JFrame {
         JButton routesViewButton = new JButton("View routes");
         routesViewButton.setBounds(210, 160, buttonWidth, buttonHeight);
         routesViewButton.addActionListener(e -> {
-            JTable table = new JTable(new RoutesTableModel());
+            RoutesService routesService = context.getBean(RoutesService.class);
+            List<RoutesEntity> routesEntityList = routesService.findAll();
+            Object[][] array = new Object[routesEntityList.size()][6];
+            for (int i = 0; i < routesEntityList.size(); i++) {
+                array[i][0] =  routesEntityList.get(i).getId();
+                array[i][1] =  routesEntityList.get(i).getAPoint();
+                array[i][2] =  routesEntityList.get(i).getBPoint();
+                array[i][3] =  routesEntityList.get(i).getRouteLength();
+                array[i][4] =  routesEntityList.get(i).getShipsOnRoute();
+                array[i][5] =  routesEntityList.get(i).getCirculation();
+            }
+            JTable table = new JTable(array, routesHeader);
             table.setVisible(true);
             JScrollPane tableScrollPane = new JScrollPane(table);
             tableScrollPane.setBounds(10, 10, tableWidth, tableHeight);
@@ -63,7 +84,16 @@ public class Index extends JFrame {
         JButton modelViewButton = new JButton("View models");
         modelViewButton.setBounds(410, 160, buttonWidth, buttonHeight);
         modelViewButton.addActionListener(e -> {
-            JTable table = new JTable(new ModelTableModel());
+            ModelService modelService = context.getBean(ModelService.class);
+            List<ModelEntity> modelEntityList = modelService.findAll();
+            Object[][] array = new Object[modelEntityList.size()][5];
+            for (int i = 0; i < modelEntityList.size(); i++) {
+                array[i][0] =  modelEntityList.get(i).getName();
+                array[i][1] =  modelEntityList.get(i).getPayload();
+                array[i][2] =  modelEntityList.get(i).getMaxRouteLength();
+                array[i][3] =  modelEntityList.get(i).getSpeed();
+            }
+            JTable table = new JTable(array, modelHeader);
             table.setVisible(true);
             JScrollPane tableScrollPane = new JScrollPane(table);
             tableScrollPane.setBounds(10, 10, tableWidth, tableHeight);
