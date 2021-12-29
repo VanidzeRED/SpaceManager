@@ -19,5 +19,5 @@ public interface ShipsService {
 
     void setShipOnRoute(ShipsDto shipsDto, RoutesDto routesDto) throws ShipOnRouteException;
 
-    void putShipFromRoute(ShipsDto shipsDto);
+    void removeShipFromRoute(ShipsDto shipsDto);
 }

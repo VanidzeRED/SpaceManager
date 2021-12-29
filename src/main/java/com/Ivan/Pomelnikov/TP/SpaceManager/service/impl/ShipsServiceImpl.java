@@ -86,7 +86,7 @@ public class ShipsServiceImpl implements ShipsService {
     }
 
     @Override
-    public void putShipFromRoute(ShipsDto shipsDto) {
+    public void removeShipFromRoute(ShipsDto shipsDto) {
         ShipsEntity ship = shipsRepository.findByNum(shipsDto.getId());
         RoutesEntity route = routesRepository.findByNum(ship.getRoute().getId());
 
