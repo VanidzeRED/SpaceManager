@@ -1,5 +1,9 @@
 package com.Ivan.Pomelnikov.TP.SpaceManager.GUI;
 
+import com.Ivan.Pomelnikov.TP.SpaceManager.TableModels.ModelTableModel;
+import com.Ivan.Pomelnikov.TP.SpaceManager.TableModels.RoutesTableModel;
+import com.Ivan.Pomelnikov.TP.SpaceManager.TableModels.ShipsTableModel;
+
 import javax.swing.*;
 
 public class Index extends JFrame {
@@ -23,7 +27,7 @@ public class Index extends JFrame {
         JButton shipsViewButton = new JButton("View ships");
         shipsViewButton.setBounds(10, 160, buttonWidth, buttonHeight);
         shipsViewButton.addActionListener(e -> {
-            JTable table = new JTable(10, 5);
+            JTable table = new JTable(new ShipsTableModel());
             table.setVisible(true);
             JScrollPane tableScrollPane = new JScrollPane(table);
             tableScrollPane.setBounds(10, 10, tableWidth, tableHeight);
@@ -33,7 +37,7 @@ public class Index extends JFrame {
         JButton routesViewButton = new JButton("View routes");
         routesViewButton.setBounds(210, 160, buttonWidth, buttonHeight);
         routesViewButton.addActionListener(e -> {
-            JTable table = new JTable(10, 6);
+            JTable table = new JTable(new RoutesTableModel());
             table.setVisible(true);
             JScrollPane tableScrollPane = new JScrollPane(table);
             tableScrollPane.setBounds(10, 10, tableWidth, tableHeight);
@@ -43,7 +47,7 @@ public class Index extends JFrame {
         JButton modelViewButton = new JButton("View models");
         modelViewButton.setBounds(410, 160, buttonWidth, buttonHeight);
         modelViewButton.addActionListener(e -> {
-            JTable table = new JTable(10, 4);
+            JTable table = new JTable(new ModelTableModel());
             table.setVisible(true);
             JScrollPane tableScrollPane = new JScrollPane(table);
             tableScrollPane.setBounds(10, 10, tableWidth, tableHeight);
