@@ -5,6 +5,7 @@ import com.Ivan.Pomelnikov.TP.SpaceManager.TableModels.RoutesTableModel;
 import com.Ivan.Pomelnikov.TP.SpaceManager.TableModels.ShipsTableModel;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Index extends JFrame {
     static int buttonWidth = 195;
@@ -15,7 +16,7 @@ public class Index extends JFrame {
     public Index() {
         super("Space Manager");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setSize(630, 330);
+        this.setSize(635, 330);
 
         final ModelFrame modelFrame = new ModelFrame();
         final RoutesFrame routesFrame = new RoutesFrame();
@@ -23,6 +24,10 @@ public class Index extends JFrame {
 
         JPanel panel = new JPanel();
         panel.setLayout(null);
+
+        JLabel label = new JLabel("Space Manager", SwingConstants.CENTER);
+        label.setFont(new Font(null, Font.BOLD, 76));
+        label.setBounds(10, 10, tableWidth, tableHeight);
 
         JButton shipsViewButton = new JButton("View ships");
         shipsViewButton.setBounds(10, 160, buttonWidth, buttonHeight);
@@ -32,6 +37,7 @@ public class Index extends JFrame {
             JScrollPane tableScrollPane = new JScrollPane(table);
             tableScrollPane.setBounds(10, 10, tableWidth, tableHeight);
             panel.add(tableScrollPane);
+            label.setVisible(false);
         });
 
         JButton routesViewButton = new JButton("View routes");
@@ -42,6 +48,7 @@ public class Index extends JFrame {
             JScrollPane tableScrollPane = new JScrollPane(table);
             tableScrollPane.setBounds(10, 10, tableWidth, tableHeight);
             panel.add(tableScrollPane);
+            label.setVisible(false);
         });
 
         JButton modelViewButton = new JButton("View models");
@@ -52,6 +59,7 @@ public class Index extends JFrame {
             JScrollPane tableScrollPane = new JScrollPane(table);
             tableScrollPane.setBounds(10, 10, tableWidth, tableHeight);
             panel.add(tableScrollPane);
+            label.setVisible(false);
         });
 
         JButton shipsManageButton = new JButton("Manage ships");
@@ -77,6 +85,7 @@ public class Index extends JFrame {
         panel.add(shipsViewButton);
         panel.add(routesViewButton);
         panel.add(modelViewButton);
+        panel.add(label);
         this.getContentPane().add(panel);
         this.setVisible(true);
     }

@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SpaceManagerApplication {
 
 	public static void main(String[] args) {
-		Index index = new Index();
+		new Index();
 		SpringApplication.run(SpaceManagerApplication.class, args);
 	}
 }

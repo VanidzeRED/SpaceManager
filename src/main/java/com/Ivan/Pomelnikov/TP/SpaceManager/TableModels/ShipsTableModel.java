@@ -26,7 +26,7 @@ public class ShipsTableModel extends AbstractTableModel {
             case 1 -> "model";
             case 2 -> "route";
             case 3 -> "time";
-            case 5 -> "circulation";
+            case 4 -> "circulation";
             default -> "not stated";
         };
     }
