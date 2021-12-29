@@ -1,10 +1,14 @@
 package com.Ivan.Pomelnikov.TP.SpaceManager.GUI;
 
+import org.springframework.context.ApplicationContext;
+
 import javax.swing.*;
 
 public class ModelFrame extends JFrame {
 
-    public ModelFrame() {
+
+
+    public ModelFrame(ApplicationContext context) {
         super("Model Manager");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(430, 250);
@@ -26,7 +30,9 @@ public class ModelFrame extends JFrame {
 
         JButton addButton = new JButton("add new");
         addButton.setBounds(10, 170, Index.buttonWidth, Index.buttonHeight);
-        addButton.addActionListener(e -> );
+        addButton.addActionListener(e -> {
+
+        });
 
         JTextField modelToRemoveTextField = new JTextField("madel name");
         modelToRemoveTextField.setBounds(210, 10, Index.buttonWidth, Index.buttonHeight);

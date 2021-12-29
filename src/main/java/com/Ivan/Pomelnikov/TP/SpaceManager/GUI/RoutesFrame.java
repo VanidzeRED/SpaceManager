@@ -1,10 +1,12 @@
 package com.Ivan.Pomelnikov.TP.SpaceManager.GUI;
 
+import org.springframework.context.ApplicationContext;
+
 import javax.swing.*;
 
 public class RoutesFrame extends JFrame {
 
-    public RoutesFrame() {
+    public RoutesFrame(ApplicationContext context) {
         super("Routes Manager");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(430, 250);

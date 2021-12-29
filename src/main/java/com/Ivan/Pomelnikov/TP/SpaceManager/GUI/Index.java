@@ -3,9 +3,15 @@ package com.Ivan.Pomelnikov.TP.SpaceManager.GUI;
 import com.Ivan.Pomelnikov.TP.SpaceManager.TableModels.ModelTableModel;
 import com.Ivan.Pomelnikov.TP.SpaceManager.TableModels.RoutesTableModel;
 import com.Ivan.Pomelnikov.TP.SpaceManager.TableModels.ShipsTableModel;
+import com.Ivan.Pomelnikov.TP.SpaceManager.entity.ShipsEntity;
+import com.Ivan.Pomelnikov.TP.SpaceManager.service.ShipsService;
+import com.Ivan.Pomelnikov.TP.SpaceManager.service.impl.ShipsServiceImpl;
+import lombok.Setter;
+import org.springframework.context.ApplicationContext;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 public class Index extends JFrame {
     static int buttonWidth = 195;
@@ -13,14 +19,14 @@ public class Index extends JFrame {
     static int tableWidth = 600;
     static int tableHeight = 140;
 
-    public Index() {
+    public Index(ApplicationContext context) {
         super("Space Manager");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(635, 330);
 
-        final ModelFrame modelFrame = new ModelFrame();
-        final RoutesFrame routesFrame = new RoutesFrame();
-        final ShipsFrame shipsFrame = new ShipsFrame();
+        final ModelFrame modelFrame = new ModelFrame(context);
+        final RoutesFrame routesFrame = new RoutesFrame(context);
+        final ShipsFrame shipsFrame = new ShipsFrame(context);
 
         JPanel panel = new JPanel();
         panel.setLayout(null);
@@ -32,8 +38,11 @@ public class Index extends JFrame {
         JButton shipsViewButton = new JButton("View ships");
         shipsViewButton.setBounds(10, 160, buttonWidth, buttonHeight);
         shipsViewButton.addActionListener(e -> {
-            JTable table = new JTable(new ShipsTableModel());
+            JTable table = new JTable(new ShipsTableModel(context.getBean(ShipsService.class)));
             table.setVisible(true);
+            ShipsService shipsService = context.getBean(ShipsService.class);
+            List<ShipsEntity> shipsEntityList = shipsService.findAll();
+            System.out.println(shipsEntityList.get(0).getModel());
             JScrollPane tableScrollPane = new JScrollPane(table);
             tableScrollPane.setBounds(10, 10, tableWidth, tableHeight);
             panel.add(tableScrollPane);

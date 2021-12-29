@@ -1,13 +1,20 @@
 package com.Ivan.Pomelnikov.TP.SpaceManager.GUI;
 
+import com.Ivan.Pomelnikov.TP.SpaceManager.dto.ShipsDto;
+import com.Ivan.Pomelnikov.TP.SpaceManager.service.ShipsService;
+import org.springframework.context.ApplicationContext;
+
 import javax.swing.*;
 
 public class ShipsFrame extends JFrame {
 
-    public ShipsFrame() {
+    private ShipsService shipsService;
+
+    public ShipsFrame(ApplicationContext context) {
         super("Ships Manager");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(630, 250);
+        this.shipsService = context.getBean(ShipsService.class);
 
         JPanel panel = new JPanel();
         panel.setLayout(null);
@@ -20,6 +27,12 @@ public class ShipsFrame extends JFrame {
 
         JButton addButton = new JButton("add new");
         addButton.setBounds(10, 90, Index.buttonWidth, Index.buttonHeight);
+        addButton.addActionListener(e -> {
+            ShipsDto shipsDto = new ShipsDto();
+            shipsDto.setId(Long.valueOf(idTextField.getText()));
+            shipsDto.setModel(modelTextField.getText());
+            shipsService.addShip(shipsDto);
+        });
 
         JTextField shipIdTextField = new JTextField("ship Id");
         shipIdTextField.setBounds(210, 10, Index.buttonWidth, Index.buttonHeight);
