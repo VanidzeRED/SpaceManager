@@ -10,6 +10,7 @@ import org.springframework.context.ApplicationContext;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Arrays;
 import java.util.List;
 
 public class Index extends JFrame {
@@ -47,7 +48,9 @@ public class Index extends JFrame {
             for (int i = 0; i < shipsEntityList.size(); i++) {
                 array[i][0] =  shipsEntityList.get(i).getId();
                 array[i][1] =  shipsEntityList.get(i).getModel();
-                array[i][2] =  shipsEntityList.get(i).getRoute();
+                if (shipsEntityList.get(i).getRoute() != null) {
+                    array[i][2] =  shipsEntityList.get(i).getRoute().getId();
+                }
                 array[i][3] =  shipsEntityList.get(i).getTimeOnRoute();
                 array[i][4] =  shipsEntityList.get(i).getCirculation();
             }
@@ -70,7 +73,14 @@ public class Index extends JFrame {
                 array[i][1] =  routesEntityList.get(i).getAPoint();
                 array[i][2] =  routesEntityList.get(i).getBPoint();
                 array[i][3] =  routesEntityList.get(i).getRouteLength();
-                array[i][4] =  routesEntityList.get(i).getShipsOnRoute();
+                if (routesEntityList.get(i).getShipsOnRoute() != null){
+                    StringBuilder stringBuilder = new StringBuilder();
+                    for (int j = 0; j < routesEntityList.get(i).getShipsOnRoute().size(); j++){
+                        stringBuilder.append(routesEntityList.get(i).getShipsOnRoute().toArray()[j]);
+                        stringBuilder.append(" ");
+                    }
+                    array[i][4] = stringBuilder.toString();
+                }
                 array[i][5] =  routesEntityList.get(i).getCirculation();
             }
             JTable table = new JTable(array, routesHeader);

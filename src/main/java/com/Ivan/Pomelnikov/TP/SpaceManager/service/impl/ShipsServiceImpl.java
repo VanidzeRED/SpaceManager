@@ -27,6 +27,7 @@ public class ShipsServiceImpl implements ShipsService {
 
     @Autowired
     private ModelRepository modelRepository;
+
     @Override
     public List<ShipsEntity> findAll() {
         return shipsRepository.findAll();
@@ -75,12 +76,17 @@ public class ShipsServiceImpl implements ShipsService {
         double circulation = Math.round(model.getSpeed() / timeOnRoute * 100.)/100.;
         double sumCirculation = route.getCirculation() + circulation;
 
+        Set<ShipsEntity> shipsEntitySet;
         ship.setRoute(route);
         ship.setTimeOnRoute(timeOnRoute);
         ship.setCirculation(circulation);
         route.setCirculation(sumCirculation);
-        Set<ShipsEntity> shipsEntitySet = route.getShipsOnRoute();
-        shipsEntitySet.add(ship);
+        shipsEntitySet = route.getShipsOnRoute();
+        if (shipsEntitySet != null){
+            shipsEntitySet.add(ship);
+        } else {
+            shipsEntitySet = Set.of(ship);
+        }
         route.setShipsOnRoute(shipsEntitySet);
 
         routesRepository.save(route);
